@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hey Ester!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #fdf8f6;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+    }
+    .card {
+      background: #ffffff;
+      padding: 40px 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      max-width: 400px;
+      width: 100%;
+      position: relative;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #e65c00;
+      margin-bottom: 12px;
+    }
+    p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 30px;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      position: relative;
+      min-height: 50px;
+    }
+    button {
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+    }
+    .btn-yes {
+      background-color: #e65c00;
+      color: white;
+    }
+    .btn-yes:hover {
+      background-color: #cc5200;
+      transform: scale(1.05);
+    }
+    .btn-no {
+      background-color: #f0f0f0;
+      color: #777;
+      position: absolute;
+    }
+    .success-message {
+      display: none;
+    }
+    .success-message h2 {
+      font-size: 1.8rem;
+      color: #e65c00;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div id="ask-section">
+      <h1>Hey Ester 👋</h1>
+      <p>I was thinking... coffee, good conversations, and zero pressure. Are you free to grab a drink with me this week?</p>
+      
+      <div class="btn-group">
+        <button class="btn-yes" onclick="acceptInvitation()">Yes, let's do it!</button>
+        <button class="btn-no" id="no-btn" onmouseover="dodgeButton()">No</button>
+      </div>
+    </div>
+
+    <div id="success-section" class="success-message">
+      <h2>Awesome! 🎉</h2>
+      <p>It's a date. I'll text you to figure out the time and spot!</p>
+    </div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById('no-btn');
+    const askSection = document.getElementById('ask-section');
+    const successSection = document.getElementById('success-section');
+
+    // Position the "No" button initially next to the "Yes" button
+    noBtn.style.left = '55%';
+
+    function dodgeButton() {
+      const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+      const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+      
+      noBtn.style.position = 'fixed';
+      noBtn.style.left = `${Math.max(20, x)}px`;
+      noBtn.style.top = `${Math.max(20, y)}px`;
+    }
+
+    function acceptInvitation() {
+      askSection.style.display = 'none';
+      successSection.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
